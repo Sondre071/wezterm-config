@@ -37,9 +37,9 @@ return function(window, pane)
             title = 'Move to path',
             choices = choices,
             fuzzy = true,
-            action = wezterm.action_callback(function(win, pn, id, _label)
-                if not id then return end
-                pn:send_text("Set-Location" .. id .. '"\r')
+            action = wezterm.action_callback(function(win, pn, _id, label)
+                if not label then return end
+                pn:send_text('Set-Location "' .. label .. '"\r')
             end)
         },
         pane
