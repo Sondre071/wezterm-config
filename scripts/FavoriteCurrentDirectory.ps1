@@ -8,6 +8,7 @@ if (-not (Test-Path $path))
 }
 
 $existingContent = Get-Content $path
+
 $currentDirectory = (Get-Location).Path
 
 if ($currentDirectory -in $existingContent)

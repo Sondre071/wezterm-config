@@ -7,7 +7,8 @@ if (-not (Test-Path $path))
     New-Item -ItemType File -Path $path
 }
 
-$fileContent = Get-Content $path
+$existingContent = Get-Content $path
+
 $currentDirectory = (Get-Location).Path
 
 if ($currentDirectory -notin $fileContent)
@@ -16,9 +17,9 @@ if ($currentDirectory -notin $fileContent)
     return
 }
 
-$fileContent = $fileContent | Where-Object { $_ -ne $currentDirectory }
+$updatedContent = $existingContent | Where-Object { $_ -ne $currentDirectory }
 
-Set-Content -Path $path -Value $fileContent
+Set-Content -Path $path -Value $updatedContent
 
 $s = "{0}Unfavorited path: {1}$currentDirectory{2}." -f `
     $PSStyle.Foreground.BrightYellow, `

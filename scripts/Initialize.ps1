@@ -1,25 +1,25 @@
 $ErrorActionPreference = 'Continue'
 
-$weztermConfigPath = "$env:USERPROFILE/.config/wezterm"
-$weztermUserDataPath =  "$env:USERPROFILE/AppData/Local/wezterm"
+$configPath = "$env:USERPROFILE/.config/wezterm"
+$userDataPath =  "$env:USERPROFILE/AppData/Local/wezterm"
 
 $scriptNames = @('FavoriteCurrentDirectory.ps1', 'UnfavoriteCurrentDirectory.ps1')
 
 foreach ($name in $scriptNames)
 {
-    $sourcePath = Join-Path $weztermConfigPath 'scripts' $name
-    $symlinkPath = Join-Path $weztermUserDataPath 'scripts' 'Wezterm' $name
+    $sourcePath = Join-Path $configPath 'scripts' $name
+    $symlinkPath = Join-Path $userDataPath 'scripts' 'Wezterm' $name
     New-Item -ItemType SymbolicLink -Path $symlinkPath -Target $sourcePath -Force
 }
 
-$favoritePathsPath = Join-Path $weztermUserDataPath 'favorite_paths'
+$favoritePathsPath = Join-Path $userDataPath 'favorite_paths'
 
 if (-not (Test-Path $favoritePathsPath))
 {
     New-Item -ItemType File -Path $favoritePathsPath
 }
 
-$backgroundPath = Join-Path $weztermUserDataPath 'background'
+$backgroundPath = Join-Path $userDataPath 'background'
 
 if (-not (Test-Path $backgroundPath))
 {
