@@ -24,7 +24,10 @@ config.color_scheme = 'Campbell (Gogh)'
 config.line_height = 1.05
 
 -- Cursor
-config.default_cursor_style = 'SteadyUnderline'
+config.default_cursor_style = 'BlinkingUnderline'
+config.cursor_blink_rate = 500
+config.cursor_blink_ease_in = 'Constant'
+config.cursor_blink_ease_out = 'Constant'
 
 -- Background
 config.text_background_opacity = 0.2
