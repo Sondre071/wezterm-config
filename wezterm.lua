@@ -2,9 +2,7 @@ local wezterm = require 'wezterm'
 
 local build_keybindings_fn = require 'build_keybindings_fn'
 local show_scripts_fn = require 'show_scripts_fn'
-
-local BACKGROUNDS_PATH = wezterm.config_dir .. '/backgrounds'
-local BACKGROUND_IMAGE_NAME = ''
+local background_image = require 'get_background'
 
 local config = wezterm.config_builder()
 
@@ -30,7 +28,7 @@ config.text_background_opacity = 0.2
 config.background = {
     {
         source = {
-            File = BACKGROUNDS_PATH .. '/' .. BACKGROUND_IMAGE_NAME,
+            File = background_image
         },
         width = 'Cover',
         hsb = {
