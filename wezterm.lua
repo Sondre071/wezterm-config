@@ -3,7 +3,9 @@ local wezterm = require 'wezterm'
 local build_keybindings_fn = require 'build_keybindings_fn'
 local show_scripts_fn = require 'show_scripts_fn'
 local show_favorite_paths_fn = require 'show_favorite_paths_fn'
-local background_image = require 'get_background'
+local background = require 'background'
+
+local background_image = background.load_path()
 
 local config = wezterm.config_builder()
 
@@ -26,18 +28,21 @@ config.default_cursor_style = 'SteadyUnderline'
 
 -- Background
 config.text_background_opacity = 0.2
-config.background = {
-    {
-        source = {
-            File = background_image
-        },
-        width = 'Cover',
-        hsb = {
-            brightness = 0.12,
-            saturation = 0.75
+
+if background_image then
+    config.background = {
+        {
+            source = {
+                File = background_image
+            },
+            width = 'Cover',
+            hsb = {
+                brightness = 0.12,
+                saturation = 0.75
+            }
         }
     }
-}
+end
 
 -- Tabs
 config.inactive_pane_hsb = {
