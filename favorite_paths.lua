@@ -21,6 +21,8 @@ local function get_favorite_paths()
         index = index + 1
     end
 
+    file:close()
+
     if #choices == 0 then
         wezterm.log_warn('No paths saved in: ' .. path)
         return nil
