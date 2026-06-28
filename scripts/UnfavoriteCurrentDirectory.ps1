@@ -17,7 +17,7 @@ if ($currentDirectory -notin $existingContent)
     return
 }
 
-$updatedContent = $existingContent | Where-Object { $_ -ne $currentDirectory }
+$updatedContent = @($existingContent | Where-Object { $_ -ne $currentDirectory })
 
 Set-Content -Path $path -Value $updatedContent
 

@@ -2,8 +2,6 @@ local wezterm = require 'wezterm'
 
 local M = {}
 
--- Windows-only
-
 local function get_script_choices()
     local scripts_path = string.format("C:/Users/%s/AppData/Local/wezterm/scripts", os.getenv("USERNAME"))
 
