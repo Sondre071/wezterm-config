@@ -35,7 +35,7 @@ local function show_picker(window, pane)
         wezterm.action.InputSelector {
             title = 'Run Script',
             choices = choices,
-            --fuzzy = true,
+            fuzzy = true,
             action = wezterm.action_callback(function(win, pn, id, _label)
                 if not id then return end
                 pn:send_text('& "' .. id .. '"\r')

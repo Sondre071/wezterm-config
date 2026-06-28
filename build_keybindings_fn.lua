@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 
-return function(show_script_picker_fn)
+return function(show_script_picker_fn, show_favorite_paths_fn)
     return {
         {
             key = 'F1',
@@ -9,6 +9,10 @@ return function(show_script_picker_fn)
         {
             key = 'F2',
             action = wezterm.action_callback(show_script_picker_fn),
+        },
+        {
+            key = 'F3',
+            action = wezterm.action_callback(show_favorite_paths_fn),
         },
         {
             key = 'J',

@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 
 local build_keybindings_fn = require 'build_keybindings_fn'
 local show_scripts_fn = require 'show_scripts_fn'
+local show_favorite_paths_fn = require 'show_favorite_paths_fn'
 local background_image = require 'get_background'
 
 local config = wezterm.config_builder()
@@ -49,6 +50,6 @@ config.colors = {
     split = '#555555',
 }
 
-config.keys = build_keybindings_fn(show_scripts_fn)
+config.keys = build_keybindings_fn(show_scripts_fn, show_favorite_paths_fn)
 
 return config
