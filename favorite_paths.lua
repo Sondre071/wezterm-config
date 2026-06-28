@@ -1,14 +1,16 @@
 local wezterm = require 'wezterm'
 
-local PATH = string.format("C:/Users/%s/AppData/Local/wezterm/favorite_paths", os.getenv("USERNAME"))
+local M = {}
 
 local function get_favorite_paths()
+    local path = string.format("C:/Users/%s/AppData/Local/wezterm/favorite_paths", os.getenv("USERNAME"))
+
     local choices = {}
 
-    local file = io.open(PATH, 'r')
+    local file = io.open(path, 'r')
 
     if not file then
-        wezterm.log_error('Could not read file: ' .. PATH)
+        wezterm.log_error('Could not read file: ' .. path)
         return nil
     end
 
@@ -20,14 +22,14 @@ local function get_favorite_paths()
     end
 
     if #choices == 0 then
-        wezterm.log_warn('No paths saved in: ' .. PATH)
+        wezterm.log_warn('No paths saved in: ' .. path)
         return nil
     end
 
     return choices
 end
 
-return function(window, pane)
+function M.show_picker(window, pane)
     local choices = get_favorite_paths()
 
     if not choices then return end
@@ -45,3 +47,5 @@ return function(window, pane)
         pane
     )
 end
+
+return M

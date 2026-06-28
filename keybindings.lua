@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 
-return function(show_script_picker_fn, show_favorite_paths_fn)
+local M = {}
+
+function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
     return {
         {
             key = 'F1',
@@ -12,7 +14,7 @@ return function(show_script_picker_fn, show_favorite_paths_fn)
         },
         {
             key = 'F3',
-            action = wezterm.action_callback(show_favorite_paths_fn),
+            action = wezterm.action_callback(show_favorite_paths_picker_fn),
         },
         {
             key = 'J',
@@ -87,3 +89,5 @@ return function(show_script_picker_fn, show_favorite_paths_fn)
         },
     }
 end
+
+return M
