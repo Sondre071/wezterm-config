@@ -15,7 +15,7 @@ function M.load_path()
     file:close()
 
     if content == '' then
-        wezterm.log_warn('No path for background image found in: ' .. path)
+        wezterm.log_info('No path for background image found in: ' .. path)
         return nil
     end
 
