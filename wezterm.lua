@@ -1,11 +1,9 @@
 local wezterm = require 'wezterm'
 
-local current_dir = wezterm.config_dir
-
 local build_keybindings_fn = require 'build_keybindings_fn'
 local show_scripts_fn = require 'show_scripts_fn'
 
-local BACKGROUNDS_PATH = current_dir .. '/backgrounds'
+local BACKGROUNDS_PATH = wezterm.config_dir .. '/backgrounds'
 local BACKGROUND_IMAGE_NAME = ''
 
 local config = wezterm.config_builder()
