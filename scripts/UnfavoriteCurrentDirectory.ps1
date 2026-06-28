@@ -7,8 +7,8 @@ if (-not (Test-Path $path))
     New-Item -ItemType File -Path $path
 }
 
-$currentDirectory = (Get-Location).Path
 $fileContent = Get-Content $path
+$currentDirectory = (Get-Location).Path
 
 if ($currentDirectory -notin $fileContent)
 {
