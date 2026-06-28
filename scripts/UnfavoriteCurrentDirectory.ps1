@@ -23,6 +23,6 @@ Set-Content -Path $path -Value $fileContent
 $s = "{0}Unfavorited path: {1}$currentDirectory{2}." -f `
     $PSStyle.Foreground.BrightYellow, `
     $PSStyle.Foreground.BrightWhite, `
-    $PSStyle.Reset `
+    $PSStyle.Reset
 
 Write-Host $s

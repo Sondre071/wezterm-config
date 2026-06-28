@@ -21,6 +21,6 @@ Add-Content -Path $path -Value $currentDirectory
 $s = "{0}Favorited path: {1}$currentDirectory{2}." -f `
     $PSStyle.Foreground.BrightYellow, `
     $PSStyle.Foreground.BrightWhite, `
-    $PSStyle.Reset `
+    $PSStyle.Reset
 
 Write-Host $s
