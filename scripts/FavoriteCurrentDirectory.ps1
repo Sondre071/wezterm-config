@@ -7,7 +7,7 @@ if (-not (Test-Path $path))
     New-Item -ItemType File -Path $path
 }
 
-$existingContent = Get-Content $path
+$existingContent = @(Get-Content $path)
 
 $currentDirectory = (Get-Location).Path
 
@@ -17,7 +17,9 @@ if ($currentDirectory -in $existingContent)
     return
 }
 
-Add-Content -Path $path -Value $currentDirectory
+$updatedContent = @($existingContent + $currentDirectory) | Sort-Object
+
+Set-Content -Path $path -Value $updatedContent
 
 $s = "{0}Favorited path: {1}$currentDirectory{2}." -f `
     $PSStyle.Foreground.BrightYellow, `

@@ -7,11 +7,11 @@ if (-not (Test-Path $path))
     New-Item -ItemType File -Path $path
 }
 
-$existingContent = Get-Content $path
+$existingContent = @(Get-Content $path)
 
 $currentDirectory = (Get-Location).Path
 
-if ($currentDirectory -notin $fileContent)
+if ($currentDirectory -notin $existingContent)
 {
     Write-Host 'Current path already not favorited.' -ForegroundColor Yellow
     return
