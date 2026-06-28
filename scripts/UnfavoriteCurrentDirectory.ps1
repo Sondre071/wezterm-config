@@ -1,4 +1,5 @@
 $ErrorActionPreference = 'Stop'
+
 $path = "$env:USERPROFILE\AppData\Local\wezterm\favorite_paths"
 
 if (-not (Test-Path $path))
