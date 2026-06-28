@@ -3,7 +3,7 @@ $path = "C:\Users\$env:USERNAME\AppData\Local\wezterm\favorite_paths"
 
 if (-not (Test-Path $path))
 {
-    throw "File not found: $path."
+    New-Item -ItemType File -Path $path
 }
 
 $currentDirectory = (Get-Location).Path
@@ -11,7 +11,7 @@ $fileContent = Get-Content $path
 
 if ($currentDirectory -notin $fileContent)
 {
-    Write-Host 'Current path already unfavorited.' -ForegroundColor Yellow
+    Write-Host 'Current path already not favorited.' -ForegroundColor Yellow
     return
 }
 
