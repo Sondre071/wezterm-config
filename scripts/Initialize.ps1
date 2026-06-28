@@ -1,5 +1,5 @@
-$weztermConfigPath = "C:/Users/$env:USERNAME/.config/wezterm"
-$weztermUserDataPath =  "C:/Users/$env:USERNAME/AppData/Local/wezterm"
+$weztermConfigPath = "$env:USERPROFILE/.config/wezterm"
+$weztermUserDataPath =  "$env:USERPROFILE/AppData/Local/wezterm"
 $scriptNames = @('FavoriteCurrentDirectory.ps1', 'UnfavoriteCurrentDirectory.ps1')
 
 foreach ($name in $scriptNames)

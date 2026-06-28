@@ -1,5 +1,5 @@
 $ErrorActionPreference = 'Stop'
-$path = "C:\Users\$env:USERNAME\AppData\Local\wezterm\favorite_paths"
+$path = "$env:USERPROFILE\AppData\Local\wezterm\favorite_paths"
 
 if (-not (Test-Path $path))
 {
