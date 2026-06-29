@@ -4,6 +4,8 @@ local M = {}
 
 function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
     return {
+        
+        -- Menus
         {
             key = 'F1',
             action = wezterm.action.ActivateCommandPalette,
@@ -16,22 +18,15 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
             key = 'F3',
             action = wezterm.action_callback(show_favorite_paths_picker_fn),
         },
+        
+        -- Paste
         {
-            key = 'J',
-            mods = 'SHIFT|ALT',
-            action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+            key = 'V',
+            mods = 'CTRL',
+            action = wezterm.action.PasteFrom 'Clipboard',
         },
-        {
-            key = 'L',
-            mods = 'SHIFT|ALT',
-            action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-        },
-        {
-            key = 'j',
-            mods = 'ALT',
-            action = wezterm.action.CloseCurrentPane { confirm = false },
-        },
-
+        
+        -- Tabs
         {
             key = 'h',
             mods = 'ALT',
@@ -47,6 +42,24 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
             mods = 'ALT',
             action = wezterm.action.SpawnTab 'DefaultDomain',
         },
+        {
+            key = 'j',
+            mods = 'ALT',
+            action = wezterm.action.CloseCurrentPane { confirm = false },
+        },
+
+        -- Panes
+        {
+            key = 'J',
+            mods = 'SHIFT|ALT',
+            action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+        },
+        {
+            key = 'L',
+            mods = 'SHIFT|ALT',
+            action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+        },
+
         {
             key = 'h',
             mods = 'CTRL|ALT',
@@ -67,6 +80,8 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
             mods = 'CTRL|ALT',
             action = wezterm.action.ActivatePaneDirection 'Right',
         },
+
+        -- Scroll
         {
             key = 'y',
             mods = 'CTRL',

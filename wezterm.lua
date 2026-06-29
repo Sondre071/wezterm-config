@@ -41,7 +41,7 @@ if background_image then
             width = 'Cover',
             hsb = {
                 brightness = 0.12,
-                saturation = 0.75
+                saturation = 0.92
             }
         }
     }
