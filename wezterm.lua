@@ -41,7 +41,7 @@ if background_image then
             width = 'Cover',
             hsb = {
                 brightness = 0.12,
-                saturation = 0.92
+                saturation = 0.95
             }
         }
     }
@@ -49,8 +49,8 @@ end
 
 -- Tabs
 config.inactive_pane_hsb = {
-    saturation = 0.8,
-    brightness = 0.4,
+    saturation = 0.9,
+    brightness = 0.5,
 }
 
 -- Panes
