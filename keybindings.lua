@@ -4,7 +4,7 @@ local M = {}
 
 function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
     return {
-        
+
         -- Menus
         {
             key = 'F1',
@@ -18,14 +18,14 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
             key = 'F3',
             action = wezterm.action_callback(show_favorite_paths_picker_fn),
         },
-        
+
         -- Paste
         {
             key = 'V',
             mods = 'CTRL',
             action = wezterm.action.PasteFrom 'Clipboard',
         },
-        
+
         -- Tabs
         {
             key = 'h',
