@@ -6,8 +6,6 @@ local favorite_paths = require 'favorite_paths'
 local background = require 'background'
 local color_theme = require 'color_theme'
 
-local background_image = background.load_path()
-
 local config = wezterm.config_builder()
 
 -- Window
@@ -42,22 +40,7 @@ config.inactive_pane_hsb = {
 }
 
 -- Background
-config.text_background_opacity = 0.2
-
-if background_image then
-    config.background = {
-        {
-            source = {
-                File = background_image
-            },
-            width = 'Cover',
-            hsb = {
-                brightness = 0.12,
-                saturation = 0.95
-            }
-        }
-    }
-end
+config.background = background.load()
 
 -- Keybindings
 config.keys = keybindings.build(scripts.show_picker, favorite_paths.show_picker)
