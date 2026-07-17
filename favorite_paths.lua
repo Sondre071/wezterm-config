@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local M = {}
 
 local function get_favorite_paths()
-    local path = string.format("C:/Users/%s/AppData/Local/wezterm/favorite_paths", os.getenv("USERNAME"))
+    local path = string.format("%s/wezterm/favorite_paths", os.getenv("LOCALAPPDATA"))
 
     local choices = {}
 

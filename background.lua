@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local M = {}
 
 function M.load_path()
-    local path = string.format("C:/Users/%s/AppData/Local/wezterm/background", os.getenv("USERNAME"))
+    local path = string.format("%s/wezterm/background", os.getenv("LOCALAPPDATA"))
     local file, _ = io.open(path, 'r')
 
     if not file then

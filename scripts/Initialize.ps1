@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Continue'
 
 $configPath = "$env:USERPROFILE/.config/wezterm"
-$userDataPath =  "$env:USERPROFILE/AppData/Local/wezterm"
+$userDataPath =  "$env:LOCALAPPDATA/wezterm"
 
 $scriptNames = @('FavoriteCurrentDirectory.ps1', 'UnfavoriteCurrentDirectory.ps1')
 
@@ -9,6 +9,7 @@ foreach ($name in $scriptNames)
 {
     $sourcePath = Join-Path $configPath 'scripts' $name
     $symlinkPath = Join-Path $userDataPath 'scripts' 'WezTerm' $name
+
     New-Item -ItemType SymbolicLink -Path $symlinkPath -Target $sourcePath -Force
 }
 
