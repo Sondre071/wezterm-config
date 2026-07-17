@@ -11,7 +11,7 @@ function M.load_path()
         return nil
     end
 
-    local content = file:read('a')
+    local content = file:read()
     file:close()
 
     if content == '' then
