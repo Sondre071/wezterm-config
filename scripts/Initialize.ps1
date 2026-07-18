@@ -20,9 +20,16 @@ if (-not (Test-Path $favoritePathsPath))
     New-Item -ItemType File -Path $favoritePathsPath
 }
 
-$backgroundPath = Join-Path $userDataPath 'background'
+$backgroundConfigPath = Join-Path $userDataPath 'background'
 
-if (-not (Test-Path $backgroundPath))
+if (-not (Test-Path $backgroundConfigPath))
 {
-    New-Item -ItemType File -Path $backgroundPath
+    New-Item -ItemType File -Path $backgroundConfigPath
+}
+
+$backgroundsPath = Join-Path $userDataPath 'backgrounds'
+
+if (-not (Test-Path $backgroundsPath))
+{
+    New-Item -ItemType Directory -Path $backgroundsPath
 }
