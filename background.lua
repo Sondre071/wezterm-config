@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local M = {}
 
 function M.load()
-    local path = string.format("%s/wezterm/background", os.getenv("LOCALAPPDATA"))
+    local path = string.format("%s/.config/powershell/background", os.getenv("USERPROFILE"))
 
     local success, file_iterator = pcall(io.lines, path)
 

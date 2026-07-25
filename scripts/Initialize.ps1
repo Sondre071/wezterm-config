@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Continue'
 
 $configPath = "$env:USERPROFILE/.config/wezterm"
-$userDataPath =  "$env:LOCALAPPDATA/wezterm"
+$userDataPath = "$env:USERPROFILE/.config/powershell"
 
 $scriptNames = @('FavoriteCurrentDirectory.ps1', 'UnfavoriteCurrentDirectory.ps1')
 

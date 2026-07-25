@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local M = {}
 
 local function get_script_choices()
-    local scripts_path = string.format("%s/wezterm/scripts", os.getenv("LOCALAPPDATA"))
+    local scripts_path = string.format("%s/.config/powershell/scripts", os.getenv("USERPROFILE"))
 
     local choices = {}
 

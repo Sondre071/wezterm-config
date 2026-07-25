@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local M = {}
 
 local function get_favorite_paths()
-    local path = string.format("%s/wezterm/favorite_paths", os.getenv("LOCALAPPDATA"))
+    local path = string.format("%s/.config/powershell/favorite_paths", os.getenv("USERPROFILE"))
 
     local choices = {}
 
@@ -43,7 +43,7 @@ function M.show_picker(window, pane)
             fuzzy = true,
             action = wezterm.action_callback(function(win, pn, _id, label)
                 if not label then return end
-                pn:send_text('Set-Location "' .. label .. '"\r')
+                pn:send_text('cd "' .. label .. '"\r')
             end)
         },
         pane
