@@ -1,5 +1,7 @@
 local wezterm = require 'wezterm'
 
+local act = wezterm.action
+
 local M = {}
 
 function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
@@ -8,7 +10,7 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
         -- Menus
         {
             key = 'F1',
-            action = wezterm.action.ActivateCommandPalette,
+            action = act.ActivateCommandPalette,
         },
         {
             key = 'F2',
@@ -23,7 +25,7 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
         {
             key = 'LeftArrow',
             mods = 'CTRL|SHIFT',
-            action = wezterm.action.SendKey {
+            action = act.SendKey {
                 key = 'LeftArrow',
                 mods = 'CTRL|SHIFT'
             }
@@ -31,7 +33,7 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
         {
             key = 'RightArrow',
             mods = 'CTRL|SHIFT',
-            action = wezterm.action.SendKey {
+            action = act.SendKey {
                 key = 'RightArrow',
                 mods = 'CTRL|SHIFT'
             }
@@ -41,84 +43,84 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
         {
             key = 'V',
             mods = 'CTRL',
-            action = wezterm.action.PasteFrom 'Clipboard',
+            action = act.PasteFrom 'Clipboard',
         },
 
         -- Tabs
         {
             key = 'h',
             mods = 'ALT',
-            action = wezterm.action.ActivateTabRelative(-1),
+            action = act.ActivateTabRelative(-1),
         },
         {
             key = 'l',
             mods = 'ALT',
-            action = wezterm.action.ActivateTabRelative(1),
+            action = act.ActivateTabRelative(1),
         },
         {
             key = 'k',
             mods = 'ALT',
-            action = wezterm.action.SpawnTab 'DefaultDomain',
+            action = act.SpawnTab 'DefaultDomain',
         },
         {
             key = 'j',
             mods = 'ALT',
-            action = wezterm.action.CloseCurrentPane { confirm = false },
+            action = act.CloseCurrentPane { confirm = false },
         },
 
         -- Panes
         {
             key = 'J',
             mods = 'SHIFT|ALT',
-            action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+            action = act.SplitVertical { domain = 'CurrentPaneDomain' },
         },
         {
             key = 'L',
             mods = 'SHIFT|ALT',
-            action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+            action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
         },
 
         {
             key = 'h',
             mods = 'CTRL|ALT',
-            action = wezterm.action.ActivatePaneDirection 'Left',
+            action = act.ActivatePaneDirection 'Left',
         },
         {
             key = 'j',
             mods = 'CTRL|ALT',
-            action = wezterm.action.ActivatePaneDirection 'Down',
+            action = act.ActivatePaneDirection 'Down',
         },
         {
             key = 'k',
             mods = 'CTRL|ALT',
-            action = wezterm.action.ActivatePaneDirection 'Up',
+            action = act.ActivatePaneDirection 'Up',
         },
         {
             key = 'l',
             mods = 'CTRL|ALT',
-            action = wezterm.action.ActivatePaneDirection 'Right',
+            action = act.ActivatePaneDirection 'Right',
         },
 
         -- Scroll
         {
             key = 'y',
             mods = 'CTRL',
-            action = wezterm.action.ScrollByLine(-1)
+            action = act.ScrollByLine(-1)
         },
         {
             key = 'e',
             mods = 'CTRL',
-            action = wezterm.action.ScrollByLine(1)
+            action = act.ScrollByLine(1)
         },
         {
             key = 'u',
             mods = 'CTRL',
-            action = wezterm.action.ScrollByPage(-1)
+            action = act.ScrollByPage(-1)
         },
         {
             key = 'd',
             mods = 'CTRL',
-            action = wezterm.action.ScrollByPage(1)
+            action = act.ScrollByPage(1)
         },
     }
 end
