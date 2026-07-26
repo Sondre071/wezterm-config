@@ -19,6 +19,24 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
             action = wezterm.action_callback(show_favorite_paths_picker_fn),
         },
 
+        -- Navigation
+        {
+            key = 'LeftArrow',
+            mods = 'CTRL|SHIFT',
+            action = wezterm.action.SendKey {
+                key = 'LeftArrow',
+                mods = 'CTRL|SHIFT'
+            }
+        },
+        {
+            key = 'RightArrow',
+            mods = 'CTRL|SHIFT',
+            action = wezterm.action.SendKey {
+                key = 'RightArrow',
+                mods = 'CTRL|SHIFT'
+            }
+        },
+
         -- Paste
         {
             key = 'V',
