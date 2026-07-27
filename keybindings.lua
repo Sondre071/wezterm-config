@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 
-local function is_vim(pane)
+local function is_nvim(pane)
 	local success, vim_env = pcall(function()
 		return pane:get_user_vars().IS_NVIM
 	end)
@@ -14,11 +14,13 @@ local M = {}
 
 function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 	return {
+
+		-- Switch key table
 		{
 			key = "w",
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
-				if is_vim(pane) then
+				if is_nvim(pane) then
 					window:perform_action(
 						act.SendKey({
 							key = "w",
@@ -109,7 +111,7 @@ function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 			key = "y",
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
-				if is_vim(pane) then
+				if is_nvim(pane) then
 					window:perform_action(
 						act.SendKey({
 							key = "y",
@@ -126,7 +128,7 @@ function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 			key = "e",
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
-				if is_vim(pane) then
+				if is_nvim(pane) then
 					window:perform_action(
 						act.SendKey({
 							key = "e",
@@ -143,7 +145,7 @@ function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 			key = "u",
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
-				if is_vim(pane) then
+				if is_nvim(pane) then
 					window:perform_action(
 						act.SendKey({
 							key = "u",
@@ -160,7 +162,7 @@ function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 			key = "d",
 			mods = "CTRL",
 			action = wezterm.action_callback(function(window, pane)
-				if is_vim(pane) then
+				if is_nvim(pane) then
 					window:perform_action(
 						act.SendKey({
 							key = "d",
