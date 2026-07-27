@@ -4,4 +4,6 @@
 
 Open PowerShell in administrator mode and run:
 
-`scripts/Initialize.ps1`
+```powershell
+scripts/Initialize.ps1
+```
