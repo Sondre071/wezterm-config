@@ -2,6 +2,14 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 
+local function is_vim(pane)
+	local success, vim_env = pcall(function()
+		return pane:get_user_vars().IS_NVIM
+	end)
+
+	return success and vim_env == "true"
+end
+
 local M = {}
 
 function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
@@ -19,6 +27,11 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 		{
 			key = "F3",
 			action = wezterm.action_callback(show_favorite_paths_picker_fn),
+		},
+		{
+			key = "d",
+			mods = "CTRL|SHIFT",
+			action = act.ShowDebugOverlay,
 		},
 
 		-- Navigation
@@ -41,7 +54,7 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 
 		-- Paste
 		{
-			key = "V",
+			key = "v",
 			mods = "CTRL",
 			action = act.PasteFrom("Clipboard"),
 		},
@@ -49,33 +62,33 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 		-- Tabs
 		{
 			key = "h",
-			mods = "ALT",
+			mods = "CTRL|SHIFT",
 			action = act.ActivateTabRelative(-1),
 		},
 		{
 			key = "l",
-			mods = "ALT",
+			mods = "CTRL|SHIFT",
 			action = act.ActivateTabRelative(1),
 		},
 		{
 			key = "k",
-			mods = "ALT",
+			mods = "CTRL|SHIFT",
 			action = act.SpawnTab("DefaultDomain"),
 		},
 		{
 			key = "j",
-			mods = "ALT",
+			mods = "CTRL|SHIFT",
 			action = act.CloseCurrentPane({ confirm = false }),
 		},
 
 		-- Panes
 		{
-			key = "J",
+			key = "j",
 			mods = "SHIFT|ALT",
 			action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
 		{
-			key = "L",
+			key = "l",
 			mods = "SHIFT|ALT",
 			action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 		},
@@ -105,22 +118,70 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 		{
 			key = "y",
 			mods = "CTRL",
-			action = act.ScrollByLine(-1),
+			action = wezterm.action_callback(function(window, pane)
+				if is_vim(pane) then
+					window:perform_action(
+						act.SendKey({
+							key = "y",
+							mods = "CTRL",
+						}),
+						pane
+					)
+				else
+					window:perform_action(act.ScrollByLine(-1), pane)
+				end
+			end),
 		},
 		{
 			key = "e",
 			mods = "CTRL",
-			action = act.ScrollByLine(1),
+			action = wezterm.action_callback(function(window, pane)
+				if is_vim(pane) then
+					window:perform_action(
+						act.SendKey({
+							key = "e",
+							mods = "CTRL",
+						}),
+						pane
+					)
+				else
+					window:perform_action(act.ScrollByLine(1), pane)
+				end
+			end),
 		},
 		{
 			key = "u",
 			mods = "CTRL",
-			action = act.ScrollByPage(-1),
+			action = wezterm.action_callback(function(window, pane)
+				if is_vim(pane) then
+					window:perform_action(
+						act.SendKey({
+							key = "u",
+							mods = "CTRL",
+						}),
+						pane
+					)
+				else
+					window:perform_action(act.ScrollByPage(-1), pane)
+				end
+			end),
 		},
 		{
 			key = "d",
 			mods = "CTRL",
-			action = act.ScrollByPage(1),
+			action = wezterm.action_callback(function(window, pane)
+				if is_vim(pane) then
+					window:perform_action(
+						act.SendKey({
+							key = "d",
+							mods = "CTRL",
+						}),
+						pane
+					)
+				else
+					window:perform_action(act.ScrollByPage(1), pane)
+				end
+			end),
 		},
 	}
 end
