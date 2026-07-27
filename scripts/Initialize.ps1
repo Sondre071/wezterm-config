@@ -5,10 +5,15 @@ $userDataPath = "$env:USERPROFILE/.config/powershell"
 
 $scriptNames = @('FavoriteCurrentDirectory.ps1', 'UnfavoriteCurrentDirectory.ps1')
 
+if (-not (Test-Path $userDataPath))
+{
+    New-Item -ItemType Directory -Path $userDataPath
+}
+
 foreach ($name in $scriptNames)
 {
-    $sourcePath = Join-Path $configPath 'scripts' $name
-    $symlinkPath = Join-Path $userDataPath 'scripts' 'WezTerm' $name
+    $sourcePath = Join-Path $configPath 'scripts', $name
+    $symlinkPath = Join-Path $userDataPath 'scripts', 'WezTerm', $name
 
     New-Item -ItemType SymbolicLink -Path $symlinkPath -Target $sourcePath -Force
 }
