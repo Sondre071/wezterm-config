@@ -12,8 +12,31 @@ end
 
 local M = {}
 
-function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
+function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 	return {
+		{
+			key = "w",
+			mods = "CTRL",
+			action = wezterm.action_callback(function(window, pane)
+				if is_vim(pane) then
+					window:perform_action(
+						act.SendKey({
+							key = "w",
+							mods = "CTRL",
+						}),
+						pane
+					)
+				else
+					window:perform_action(
+						act.ActivateKeyTable({
+							name = "pane",
+							one_shot = true,
+						}),
+						pane
+					)
+				end
+			end),
+		},
 
 		-- Menus
 		{
@@ -61,6 +84,16 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 
 		-- Tabs
 		{
+			key = "k",
+			mods = "CTRL|SHIFT",
+			action = act.SpawnTab("DefaultDomain"),
+		},
+		{
+			key = "j",
+			mods = "CTRL|SHIFT",
+			action = act.CloseCurrentTab({ confirm = false }),
+		},
+		{
 			key = "h",
 			mods = "CTRL|SHIFT",
 			action = act.ActivateTabRelative(-1),
@@ -69,49 +102,6 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 			key = "l",
 			mods = "CTRL|SHIFT",
 			action = act.ActivateTabRelative(1),
-		},
-		{
-			key = "k",
-			mods = "CTRL|SHIFT",
-			action = act.SpawnTab("DefaultDomain"),
-		},
-		{
-			key = "j",
-			mods = "CTRL|SHIFT",
-			action = act.CloseCurrentPane({ confirm = false }),
-		},
-
-		-- Panes
-		{
-			key = "j",
-			mods = "SHIFT|ALT",
-			action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
-		},
-		{
-			key = "l",
-			mods = "SHIFT|ALT",
-			action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-		},
-
-		{
-			key = "h",
-			mods = "CTRL|ALT",
-			action = act.ActivatePaneDirection("Left"),
-		},
-		{
-			key = "j",
-			mods = "CTRL|ALT",
-			action = act.ActivatePaneDirection("Down"),
-		},
-		{
-			key = "k",
-			mods = "CTRL|ALT",
-			action = act.ActivatePaneDirection("Up"),
-		},
-		{
-			key = "l",
-			mods = "CTRL|ALT",
-			action = act.ActivatePaneDirection("Right"),
 		},
 
 		-- Scroll
@@ -182,6 +172,43 @@ function M.build(show_script_picker_fn, show_favorite_paths_picker_fn)
 					window:perform_action(act.ScrollByPage(1), pane)
 				end
 			end),
+		},
+	}
+end
+
+function M.build_key_tables()
+	return {
+		pane = {
+			-- Panes
+			{
+				key = "v",
+				action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+			},
+			{
+				key = "s",
+				action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+			},
+			{
+				key = "c",
+				action = act.CloseCurrentPane({ confirm = false }),
+			},
+
+			{
+				key = "h",
+				action = act.ActivatePaneDirection("Left"),
+			},
+			{
+				key = "j",
+				action = act.ActivatePaneDirection("Down"),
+			},
+			{
+				key = "k",
+				action = act.ActivatePaneDirection("Up"),
+			},
+			{
+				key = "l",
+				action = act.ActivatePaneDirection("Right"),
+			},
 		},
 	}
 end

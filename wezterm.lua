@@ -43,6 +43,7 @@ config.inactive_pane_hsb = {
 config.background = background.load()
 
 -- Keybindings
-config.keys = keybindings.build(scripts.show_picker, favorite_paths.show_picker)
+config.keys = keybindings.build_keys(scripts.show_picker, favorite_paths.show_picker)
+config.key_tables = keybindings.build_key_tables()
 
 return config
