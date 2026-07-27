@@ -1,4 +1,4 @@
-# Wezterm config
+# WezTerm config
 
 ## Installation
 
