@@ -41,6 +41,7 @@ function M.show_picker(window, pane)
 	window:perform_action(
 		wezterm.action.InputSelector({
 			title = "Move to path",
+			fuzzy_description = "Path: ",
 			choices = choices,
 			fuzzy = true,
 			action = wezterm.action_callback(function(win, pn, _id, label)

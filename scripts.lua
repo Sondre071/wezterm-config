@@ -39,6 +39,7 @@ function M.show_picker(window, pane)
 	window:perform_action(
 		wezterm.action.InputSelector({
 			title = "Run Script",
+			fuzzy_description = "Script: ",
 			choices = choices,
 			fuzzy = true,
 			action = wezterm.action_callback(function(win, pn, id, _label)
