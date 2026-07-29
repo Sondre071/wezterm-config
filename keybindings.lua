@@ -47,11 +47,19 @@ function M.build_keys(show_script_picker_fn, show_favorite_paths_picker_fn)
 		},
 		{
 			key = "F2",
-			action = wezterm.action_callback(show_script_picker_fn),
+			action = wezterm.action_callback(function(window, pane)
+				if not is_nvim(pane) then
+					show_script_picker_fn(window, pane)
+				end
+			end),
 		},
 		{
 			key = "F3",
-			action = wezterm.action_callback(show_favorite_paths_picker_fn),
+			action = wezterm.action_callback(function(window, pane)
+				if not is_nvim(pane) then
+					show_favorite_paths_picker_fn(window, pane)
+				end
+			end),
 		},
 		{
 			key = "d",
