@@ -46,4 +46,14 @@ config.background = background.load()
 config.keys = keybindings.build_keys(scripts.show_picker, favorite_paths.show_picker)
 config.key_tables = keybindings.build_key_tables()
 
+-- Fix incorrect tab title resetting
+wezterm.on("format-tab-title", function(tab)
+	local pane = tab.active_pane
+	local title = pane.title
+	if title:lower():find("pwsh") then
+		return "powershell"
+	end
+	return title
+end)
+
 return config
