@@ -4,13 +4,13 @@ if not ($favorite_paths_path | path exists) {
 	touch $favorite_paths_path
 }
 
-let favorite_paths = open $favorite_paths_path | lines
+let favorite_paths = open $favorite_paths_path | lines -s
 
 let current_path = pwd
 
 if ($current_path in $favorite_paths) {
-	print "Already favorited."
+	print "Path already favorited."
 } else {
-	$favorite_paths | append $current_path | sort | save -f $favorite_paths_path
+	$favorite_paths | append $current_path | where $it != '' | sort | save -f $favorite_paths_path
 	print "Path favorited."
 }
