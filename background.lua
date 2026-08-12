@@ -3,25 +3,23 @@ local wezterm = require("wezterm")
 local M = {}
 
 function M.load()
-	local path = string.format("%s/.config/powershell/background", os.getenv("USERPROFILE"))
+	local path = string.format("%s/.config/terminal/background.json", os.getenv("HOME"))
 
-	local success, file_iterator = pcall(io.lines, path)
+	local file = io.open(path, "r")
 
-	if not success then
+	if not file then
 		wezterm.log_info("No background file found in: " .. path)
 		return nil
 	end
 
-	local lines = {}
-	for line in file_iterator do
-		table.insert(lines, line)
-	end
+	local json = file:read("*all")
+	file:close()
 
-	local image_path = lines[1]
-	local brightness = tonumber(lines[2])
-	local saturation = tonumber(lines[3])
+	local image = json:match('"image":%s"([^"]+)"')
+	local brightness = tonumber(json:match('"brightness":%s(%-?[%.%d]+)'))
+	local saturation = tonumber(json:match('"saturation":%s(%-?[%.%d]+)'))
 
-	if image_path == nil or image_path == "" then
+	if image == nil or image_path == "" then
 		wezterm.log_warn("No background image path found in: " .. path)
 		return nil
 	end
@@ -39,7 +37,7 @@ function M.load()
 	return {
 		{
 			source = {
-				File = image_path,
+				File = image,
 			},
 			width = "Cover",
 			hsb = {

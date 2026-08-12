@@ -2,8 +2,8 @@
 
 ## Installation
 
-Open PowerShell in administrator mode and run:
+Open a NuShell session and run:
 
 ```path
-scripts/Initialize.ps1
+scripts/Initialize.nu
 ```

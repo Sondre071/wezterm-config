@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local M = {}
 
 local function get_favorite_paths()
-	local path = string.format("%s/.config/powershell/favorite_paths", os.getenv("USERPROFILE"))
+	local path = string.format("%s/.config/terminal/favorite_paths", os.getenv("HOME"))
 
 	local choices = {}
 
