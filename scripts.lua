@@ -22,7 +22,7 @@ local function get_script_choices()
 	end
 
 	if #choices == 0 then
-		wezterm.log_error("No .ps1 scripts found in " .. scripts_path)
+		wezterm.log_error("No .nu scripts found in " .. scripts_path)
 		return nil
 	end
 
