@@ -3,7 +3,15 @@ local wezterm = require("wezterm")
 local M = {}
 
 local function get_favorite_paths()
-	local path = string.format("%s/.config/terminal/favorite_paths", os.getenv("HOME"))
+	local env_variable
+
+	if package.config:sub(1, 1) == "\\" then
+		env_variable = "USERPROFILE"
+	else
+		env_variable = "HOME"
+	end
+
+	local path = string.format("%s/.config/terminal/favorite_paths", os.getenv(env_variable))
 
 	local choices = {}
 

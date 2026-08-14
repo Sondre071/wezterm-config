@@ -3,7 +3,15 @@ local wezterm = require("wezterm")
 local M = {}
 
 function M.load()
-	local path = string.format("%s/.config/terminal/background.json", os.getenv("HOME"))
+	local env_variable
+
+	if package.config:sub(1, 1) == "\\" then
+		env_variable = "USERPROFILE"
+	else
+		env_variable = "HOME"
+	end
+
+	local path = string.format("%s/.config/terminal/background.json", os.getenv(env_variable))
 
 	local file = io.open(path, "r")
 
@@ -19,7 +27,7 @@ function M.load()
 	local brightness = tonumber(json:match('"brightness":%s(%-?[%.%d]+)'))
 	local saturation = tonumber(json:match('"saturation":%s(%-?[%.%d]+)'))
 
-	if image == nil or image_path == "" then
+	if image == nil or image == "" then
 		wezterm.log_warn("No background image path found in: " .. path)
 		return nil
 	end

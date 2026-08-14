@@ -3,7 +3,15 @@ local wezterm = require("wezterm")
 local M = {}
 
 local function get_script_choices()
-	local scripts_path = string.format("%s/.config/terminal/scripts", os.getenv("HOME"))
+	local env_variable
+
+	if package.config:sub(1, 1) == "\\" then
+		env_variable = "USERPROFILE"
+	else
+		env_variable = "HOME"
+	end
+
+	local scripts_path = string.format("%s/.config/terminal/scripts", os.getenv(env_variable))
 
 	local choices = {}
 
