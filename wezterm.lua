@@ -10,7 +10,7 @@ local config = wezterm.config_builder()
 
 -- Window
 config.initial_cols = 120
-config.initial_rows = 28
+config.initial_rows = 34
 --config.window_decorations = "RESIZE"
 config.default_prog = { "nu", "--experimental-options", "native-clip" }
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
