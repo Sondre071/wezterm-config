@@ -6,7 +6,7 @@ const favorite_paths_path = path self
 
 open $favorite_paths_path
 | lines --skip-empty
-| where $it != (pwd | str replace '\' '/')
-| save -f $favorite_paths_path
+| where $it != (pwd | str replace --all '\' '/')
+| ($in | save -f $favorite_paths_path)
 
 print "Path unfavorited."
